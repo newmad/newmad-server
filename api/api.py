@@ -3,6 +3,7 @@ from flask_restful import reqparse, Resource, Api
 import os
 import requests
 from .db import *
+from flask_cors import CORS
 
 DB_SERVER = os.environ.get('DB_SERVER', None)
 API_KEY = os.environ.get('API_KEY', None)
@@ -14,6 +15,7 @@ default_app = firebase_admin.initialize_app(cred, {
 
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 class WeatherID(Resource):
