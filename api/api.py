@@ -72,3 +72,17 @@ class Search(Resource):
         return place
 
 api.add_resource(Search, '/search', endpoint='search')
+
+class Search(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('keyword', type=str)
+        args = parser.parse_args()
+
+        _keyword = args['keyword']
+
+        place = set_update_like(_keyword)
+
+        return place
+
+api.add_resource(Search, '/like', endpoint='search')
