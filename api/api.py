@@ -9,7 +9,7 @@ app = Flask(__name__)
 api = Api(app)
 
 class WeatherID(Resource):
-    def post(self):
+    def get(self):
         try:
             url = 'https://api.openweathermap.org/data/2.5/weather?q=Jeju,KR&appid=' + API_KEY
             response = requests.get(url)
