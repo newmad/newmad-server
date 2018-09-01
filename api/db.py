@@ -28,3 +28,13 @@ def search_place(keyword):
     ref = db.reference('place_info')
     place = dict(ref.order_by_child('title').start_at(keyword).end_at(keyword + u'\uf8ff').get())
     return json.dumps(place, ensure_ascii = False)
+
+def set_update_like(placeId):
+    ref = db.reference('place_info')
+    place = ref.order_by_child('id').equal_to(placeId).get()
+    targetTitle = list(place)[0]
+    likeData = ref.order_by_child('id').equal_to(placeId).get()[targetTitle]['like']
+    title = ref.order_by_child('id').equal_to(placeId).get()[targetTitle]['title']
+    place[title].update({'like':likeData+1})
+    ref.update({title: place[title]})
+    return json.dumps(place[title], ensure_ascii = False)
