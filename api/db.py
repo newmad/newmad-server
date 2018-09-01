@@ -20,8 +20,10 @@ def get_place_list(sorted):
     return json.dumps(place_list, ensure_ascii = False)
 
 
-def set_place():
-    pass
+def get_place_list_by_weather(keyword):
+    ref = db.reference('place_info')
+    place = dict(ref.order_by_child('weather-id').equal_to(keyword).get())
+    return json.dumps(place, ensure_ascii = False)
 
 
 def search_place(keyword):

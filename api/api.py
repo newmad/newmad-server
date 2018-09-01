@@ -86,3 +86,17 @@ class Like(Resource):
         return place
 
 api.add_resource(Like, '/like', endpoint='like')
+
+class PlaceByWeather(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('keyword', type=int)
+        args = parser.parse_args()
+
+        _keyword = args['keyword']
+
+        place = get_place_list_by_weather(_keyword)
+
+        return place
+
+api.add_resource(PlaceByWeather, '/placebyweather', endpoint='placebyweather')
