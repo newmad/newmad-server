@@ -1,16 +1,17 @@
 from flask import Flask
-from flask_restful import Resource, Api
+from flask_restful import reqparse, Resource, Api
 import os
 import requests
 from .db import *
 
 DB_SERVER = os.environ.get('DB_SERVER', None)
+API_KEY = os.environ.get('API_KEY', None)
+
 cred = credentials.Certificate('./namedserviceAccountKey.json')
 default_app = firebase_admin.initialize_app(cred, {
     'databaseURL' : DB_SERVER
 })
 
-API_KEY = os.environ.get('API_KEY', None)
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,8 +27,8 @@ class WeatherID(Resource):
         else:
             return response.text
 
-
 api.add_resource(WeatherID, '/weather')
+
 
 class WeatherList(Resource):
     def get(self):
@@ -40,3 +41,17 @@ class WeatherList(Resource):
             return weather_list
 
 api.add_resource(WeatherList, '/weatherlist')
+
+class Place(Resource):
+    def post(self):
+        pass
+
+    def get(self, sorted):
+        try:
+            place_list = get_place_list(sorted)
+        except Exception as e:
+            return {'error': str(e)}
+        else:
+            return place_list    
+
+api.add_resource(Place, '/place/<string:sorted>')
