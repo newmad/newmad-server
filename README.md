@@ -30,8 +30,8 @@
 | 이름            | Search                                                       |
 | --------------- | ------------------------------------------------------------ |
 | 역할            | 장소 검색                                                    |
-| Method          | POST body{keyword: \<location>}                              |
-| URI             | /search                                                      |
+| Method          | GET                                                          |
+| URI             | /search?keyword=주상절리                                     |
 | reponse example | "{%"%주%상%절%리%": {%"address%": %"%제%주%특%별%자%치%도 %서%귀%포%시 %이%어%도%로 36-30%", %"category%": %"%명%소%", %"desc%": %"%주%상%절%리 %멋%있%네%요%", %"holiday%": %"%없%음%", %"id%": 2, %"img%": %"https://firebasestorage.googleapis.com/v0/b/madjoy-9e80b.appspot.com/o/jusangjeolli-725186_960_720.jpg?alt=media&token=81d485ea-25b7-4d55-8714-7f2d2f960e22%", %"like%": 24, %"parking%": %"%주%차 %완%비%", %"phone%": %"064-760-6351%", %"price%": %"%입%장%료:2000%", %"title%": %"%주%상%절%리%", %"weather-id%": 6}}" |
 
 
