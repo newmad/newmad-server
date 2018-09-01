@@ -55,3 +55,22 @@ class Place(Resource):
             return place_list    
 
 api.add_resource(Place, '/place', '/place/<string:sorted>')
+
+
+class Search(Resource):
+    def post(self):
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('keyword', type=str)
+            args = parser.parse_args()
+
+            _keyword = args['keyword']
+
+            place = search_place(_keyword)
+
+        except Exception as e:
+            return {'error': str(e)}
+        else:
+            return place
+
+api.add_resource(Search, '/search')
