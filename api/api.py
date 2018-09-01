@@ -73,10 +73,10 @@ class Search(Resource):
 
 api.add_resource(Search, '/search', endpoint='search')
 
-class Search(Resource):
+class Like(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('keyword', type=str)
+        parser.add_argument('keyword', type=int)
         args = parser.parse_args()
 
         _keyword = args['keyword']
@@ -85,4 +85,4 @@ class Search(Resource):
 
         return place
 
-api.add_resource(Search, '/like', endpoint='like')
+api.add_resource(Like, '/like', endpoint='like')
