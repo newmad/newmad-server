@@ -85,4 +85,4 @@ class Search(Resource):
 
         return place
 
-api.add_resource(Search, '/like', endpoint='search')
+api.add_resource(Search, '/like', endpoint='like')
