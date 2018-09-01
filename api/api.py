@@ -46,7 +46,7 @@ class Place(Resource):
     def post(self):
         pass
 
-    def get(self, sorted):
+    def get(self, sorted='like'):
         try:
             place_list = get_place_list(sorted)
         except Exception as e:
@@ -54,4 +54,4 @@ class Place(Resource):
         else:
             return place_list    
 
-api.add_resource(Place, '/place/<string:sorted>')
+api.add_resource(Place, '/place', '/place/<string:sorted>')
