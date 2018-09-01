@@ -4,6 +4,12 @@ import os
 import requests
 from .db import *
 
+DB_SERVER = os.environ.get('DB_SERVER', None)
+cred = credentials.Certificate('./namedserviceAccountKey.json')
+default_app = firebase_admin.initialize_app(cred, {
+    'databaseURL' : DB_SERVER
+})
+
 API_KEY = os.environ.get('API_KEY', None)
 
 app = Flask(__name__)
