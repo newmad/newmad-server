@@ -8,7 +8,7 @@ def get_weather_info_list():
     weather_list = db.reference('weather_info').get()
     weather_json = {}
     weather_json['data'] = weather_list
-    return json.dumps(weather_json)
+    return json.dumps(weather_json, ensure_ascii = False)
 
 
 # sorted : like / blahblah
@@ -17,7 +17,7 @@ def get_place_list(sorted):
     place_list = dict()
     for key,value in reversed(list(ref.order_by_child(sorted).get().items())):
         place_list[key] = value
-    return json.dumps(place_list)
+    return json.dumps(place_list, ensure_ascii = False)
 
 
 def set_place():
@@ -27,4 +27,4 @@ def set_place():
 def search_place(keyword):
     ref = db.reference('place_info')
     place = dict(ref.order_by_child('title').start_at(keyword).end_at(keyword + u'\uf8ff').get())
-    return json.dumps(place)
+    return json.dumps(place, ensure_ascii = False)
