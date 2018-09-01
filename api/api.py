@@ -73,6 +73,20 @@ class Search(Resource):
 
 api.add_resource(Search, '/search', endpoint='search')
 
+class SearchById(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', type=int)
+        args = parser.parse_args()
+
+        _id = args['id']
+
+        place = search_id(_id)
+
+        return place
+
+api.add_resource(SearchById, '/searchid', endpoint='searchid')
+
 class Like(Resource):
     def get(self):
         parser = reqparse.RequestParser()

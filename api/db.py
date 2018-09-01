@@ -31,6 +31,11 @@ def search_place(keyword):
     place = dict(ref.order_by_child('title').start_at(keyword).end_at(keyword + u'\uf8ff').get())
     return json.dumps(place, ensure_ascii = False)
 
+def search_id(id):
+    ref = db.reference('place_info')
+    place = dict(ref.order_by_child('id').equal_to(id).get())
+    return json.dumps(place, ensure_ascii = False)
+
 def set_update_like(placeId):
     ref = db.reference('place_info')
     place = ref.order_by_child('id').equal_to(placeId).get()
