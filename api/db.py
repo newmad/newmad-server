@@ -22,8 +22,17 @@ def get_place_list(sorted):
 
 def get_place_list_by_weather(keyword):
     ref = db.reference('place_info')
-    place = dict(ref.order_by_child('weather-id').equal_to(keyword).get())
-    return json.dumps(place, ensure_ascii = False)
+    place_list = dict()
+    result_dict = dict()
+    for key,value in reversed(list(ref.order_by_child('like').get().items())):
+        place_list[key] = value
+
+    for key, value in place_list.items():
+        if keyword in place_list[key]['weather-id']:
+            result_dict[key] = value
+
+
+    return json.dumps(result_dict, ensure_ascii = False)
 
 
 def search_place(keyword):
