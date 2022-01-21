@@ -20,7 +20,7 @@ google-resumable-media==0.3.1
 googleapis-common-protos==1.5.3
 idna==2.7
 ipykernel==4.9.0
-ipython==6.5.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 itsdangerous==0.24
 jedi==0.12.1
